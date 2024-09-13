@@ -1,10 +1,11 @@
 {
   "name": "clave-email-recovery",
   "version": "0.0.1",
-  "authors": "zkemail",
+  "authors": [
+    "clave-contracts",
+    "zkemail"
+  ],
   "dependencies": {
-    "@matterlabs/zksync-contracts": "0.6.1",
-    "@nomad-xyz/excessively-safe-call": "github:nomad-xyz/ExcessivelySafeCall",
     "@openzeppelin/contracts": "^5.0.0",
     "@openzeppelin/contracts-upgradeable": "^5.0.0",
     "@zk-email/contracts": "^6.1.5",
@@ -13,7 +14,6 @@
     "ts-morph": "^19.0.0"
   },
   "devDependencies": {
-    "@getclave/constants": "1.0.0",
     "@matterlabs/hardhat-zksync": "1.1.0",
     "@nomicfoundation/hardhat-chai-matchers": "2.0.7",
     "@nomicfoundation/hardhat-ethers": "3.0.6",
