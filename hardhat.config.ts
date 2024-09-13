@@ -57,8 +57,14 @@ const config: HardhatUserConfig = {
                   }
                 : undefined,
             libraries: {
-                'contracts/libraries/StringUtils.sol': {
+                '@zk-email/email-recovery/src/libraries/StringUtils.sol': {
                     StringUtils: '0x7e390c46302Fb6D7f6C7b4e36937287eB678FBC0',
+                },
+                '@zk-email/ether-email-auth-contracts/src/libraries/DecimalUtils.sol': {
+                    DecimalUtils: '0x90e964C4b200329BF0665D1A67BCdE787F61Fa3E',
+                },
+                '@zk-email/ether-email-auth-contracts/src/libraries/CommandUtils.sol': {
+                    CommandUtils: '0xae97b0A00943A633e67B5017A9F60C6e075bA1E9',
                 },
             },
         },
