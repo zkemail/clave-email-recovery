@@ -3,11 +3,15 @@ pragma solidity ^0.8.17;
 
 import {IModule} from "./interfaces/IModule.sol";
 import {IEmailRecoveryModule} from "@zk-email/email-recovery/src/interfaces/IEmailRecoveryModule.sol";
+import {EmailAuth} from "@zk-email/ether-email-auth-contracts/src/EmailAuth.sol";
 import {IClaveAccount} from "./interfaces/IClave.sol";
 import {Errors} from "./libraries/ClaveErrors.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import {EmailRecoveryManagerZkSync} from "@zk-email/email-recovery/src/EmailRecoveryManagerZkSync.sol";
 import {GuardianManager} from "@zk-email/email-recovery/src/GuardianManager.sol";
+import {L2ContractHelper} from '@matterlabs/zksync-contracts/l2/contracts/L2ContractHelper.sol';
+import {DEPLOYER_SYSTEM_CONTRACT, IContractDeployer} from '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+import {SystemContractsCaller} from '@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol';
 
 contract EmailRecoveryModule is
     EmailRecoveryManagerZkSync,
@@ -109,5 +113,73 @@ contract EmailRecoveryModule is
         return
             interfaceId == type(IModule).interfaceId ||
             interfaceId == type(IERC165).interfaceId;
+    }
+
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
+    /*                       TEST PURPOSE                         */
+    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
+
+    function computeEmailAuthAddressTest(
+        address recoveredAccount,
+        bytes32 accountSalt
+    ) public view returns (address) {
+        return
+                L2ContractHelper.computeCreate2Address(
+                    address(this),
+                    accountSalt,
+                    bytes32(0x01000077dbf74e76183846364176d6a61c2630e371b4acea4c856d76bf919bc9),
+                    keccak256(
+                        abi.encode(
+                            emailAuthImplementation(),
+                            abi.encodeCall(
+                                EmailAuth.initialize,
+                                (recoveredAccount, accountSalt, address(this))
+                            )
+                        )
+                    )
+                );
+    }
+
+    function deployEmailAuthProxyTest(
+        address recoveredAccount,
+        bytes32 accountSalt
+    ) public returns (address) {
+        (bool success, bytes memory returnData) = SystemContractsCaller
+            .systemCallWithReturndata(
+                uint32(gasleft()),
+                address(DEPLOYER_SYSTEM_CONTRACT),
+            uint128(0),
+            abi.encodeCall(
+                DEPLOYER_SYSTEM_CONTRACT.create2,
+                (
+                    accountSalt,
+                    0x01000077dbf74e76183846364176d6a61c2630e371b4acea4c856d76bf919bc9,
+                    abi.encode(
+                                emailAuthImplementation(),
+                                abi.encodeCall(
+                                    EmailAuth.initialize,
+                                    (
+                                        recoveredAccount,
+                                        accountSalt,
+                                        address(this)
+                                    )
+                                )
+                    )
+                )
+            )
+        );
+        //! require(success, "Failed to deploy email auth proxy");
+        address payable proxyAddress = abi.decode(returnData, (address));
+        return proxyAddress;
+    }
+
+    function test(
+        address recoveredAccount,
+        bytes32 accountSalt
+    ) public returns (bool) {
+        address guardian = computeEmailAuthAddressTest(recoveredAccount, accountSalt);
+        address deployed = deployEmailAuthProxyTest(recoveredAccount, accountSalt);
+
+        return guardian == deployed;
     }
 }

@@ -42,6 +42,22 @@ export const getWallet = (
     return wallet;
 };
 
+
+export const getDeployer = (
+    hre: HardhatRuntimeEnvironment,
+    privateKey?: string,
+): Deployer => {
+    if (!privateKey) {
+        // Get wallet private key from .env file
+        if (!process.env.PRIVATE_KEY)
+            throw new Error("⛔️ private key wasn't found in .env file!");
+    }
+
+    const wallet = getWallet(hre, privateKey);
+
+    return new Deployer(hre, wallet);
+};
+
 export const verifyEnoughBalance = async (
     wallet: Wallet,
     amount: bigint,

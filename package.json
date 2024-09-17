@@ -44,6 +44,7 @@
     "lint-check": "npx prettier --list-different --plugin=prettier-plugin-solidity 'contracts/**/*.sol'",
     "test": "TEST=true npx hardhat test --network hardhat",
     "compile": "npx hardhat compile",
-    "deploy:mvp": "npx hardhat deploy-zksync --script deploy-mvp.ts"
+    "deploy:mvp": "npx hardhat deploy-zksync --script deploy-mvp.ts",
+    "deploy:zkemail": "npx hardhat deploy-zksync --script deploy-zk-email.ts"
   }
 }
