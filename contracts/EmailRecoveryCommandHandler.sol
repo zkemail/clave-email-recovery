@@ -131,9 +131,9 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
             revert InvalidAccount();
         }
 
-        if (recoveryModuleInEmail != address(this)) {
-            revert InvalidRecoveryModule();
-        }
+        // if (recoveryModuleInEmail != address(this)) {
+        //     revert InvalidRecoveryModule();
+        // }
 
         return accountInEmail;
     }
