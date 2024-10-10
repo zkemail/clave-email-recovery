@@ -156,7 +156,6 @@ contract EmailRecoveryModule is
             );
     }
 
-    bool public isWorked = false;
     /// @notice Deploys a proxy contract for email authentication using the CREATE2 opcode.
     /// @dev This function utilizes the `ZKSyncCreate2Factory` to deploy the proxy contract. The
     /// deployment uses a provided account address to be recovered, account salt,
@@ -195,7 +194,7 @@ contract EmailRecoveryModule is
             );
         require(success, "Failed to deploy email auth proxy contract");
         address payable proxyAddress = abi.decode(returnData, (address));
-        isWorked = true;
+
         return proxyAddress;
     }
 }
