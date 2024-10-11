@@ -12,7 +12,6 @@ import {StringUtils} from "@zk-email/email-recovery/src/libraries/StringUtils.so
 contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
     error InvalidCommandParams();
     error InvalidAccount();
-    error InvalidRecoveryModule();
 
     /**
      * @notice Returns a hard-coded two-dimensional array of strings representing the command
@@ -129,10 +128,6 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
 
         if (accountInEmail == address(0)) {
             revert InvalidAccount();
-        }
-
-        if (recoveryModuleInEmail != address(this)) {
-            revert InvalidRecoveryModule();
         }
 
         return accountInEmail;
