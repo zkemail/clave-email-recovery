@@ -35,14 +35,16 @@ contract EmailRecoveryModule is
         address _dkimRegistry,
         address _emailAuthImpl,
         address _commandHandler,
-        address _factoryAddr
+        address _factoryAddr,
+        bytes32 _proxyBytecodeHash
     )
         EmailRecoveryManagerZkSync(
             _verifier,
             _dkimRegistry,
             _emailAuthImpl,
             _commandHandler,
-            _factoryAddr
+            _factoryAddr,
+            _proxyBytecodeHash
         )
     {}
 

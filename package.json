@@ -9,7 +9,7 @@
     "@openzeppelin/contracts": "^5.0.0",
     "@openzeppelin/contracts-upgradeable": "^5.0.0",
     "@zk-email/contracts": "^6.1.5",
-    "@zk-email/email-recovery": "0.0.7",
+    "@zk-email/email-recovery": "zkemail/email-recovery#matter-labs-audit-fixes",
     "@zk-email/ether-email-auth-contracts-zksync": "0.0.2-preview",
     "ts-morph": "^19.0.0"
   },
