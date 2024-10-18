@@ -12,7 +12,6 @@ import {StringUtils} from "@zk-email/email-recovery/src/libraries/StringUtils.so
 contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
     error InvalidCommandParams();
     error InvalidAccount();
-    error InvalidRecoveryModule();
 
     /**
      * @notice Returns a hard-coded two-dimensional array of strings representing the command
@@ -47,17 +46,13 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
         returns (string[][] memory)
     {
         string[][] memory templates = new string[][](1);
-        templates[0] = new string[](10);
+        templates[0] = new string[](6);
         templates[0][0] = "Recover";
         templates[0][1] = "account";
         templates[0][2] = "{ethAddr}";
-        templates[0][3] = "via";
-        templates[0][4] = "recovery";
-        templates[0][5] = "module";
-        templates[0][6] = "{ethAddr}";
-        templates[0][7] = "to";
-        templates[0][8] = "owner";
-        templates[0][9] = "{string}";
+        templates[0][3] = "to";
+        templates[0][4] = "owner";
+        templates[0][5] = "{string}";
         return templates;
     }
 
@@ -115,24 +110,19 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
         uint256 templateIdx,
         bytes[] calldata commandParams
     ) public view returns (address) {
-        if (templateIdx != 0 || commandParams.length != 3) {
+        if (templateIdx != 0 || commandParams.length != 2) {
             revert InvalidCommandParams();
         }
 
         address accountInEmail = abi.decode(commandParams[0], (address));
-        address recoveryModuleInEmail = abi.decode(commandParams[1], (address));
         string memory newOwnerHashInEmail = abi.decode(
-            commandParams[2],
+            commandParams[1],
             (string)
         );
         bytes32 calldataHash = StringUtils.hexToBytes32(newOwnerHashInEmail);
 
         if (accountInEmail == address(0)) {
             revert InvalidAccount();
-        }
-
-        if (recoveryModuleInEmail != address(this)) {
-            revert InvalidRecoveryModule();
         }
 
         return accountInEmail;
@@ -150,11 +140,11 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
         uint256 templateIdx,
         bytes[] memory commandParams
     ) external view returns (bytes32) {
-        if (templateIdx != 0 || commandParams.length != 3) {
+        if (templateIdx != 0 || commandParams.length != 2) {
             revert InvalidCommandParams();
         }
         string memory newOwnerHashInEmail = abi.decode(
-            commandParams[2],
+            commandParams[1],
             (string)
         );
         bytes32 calldataHash = StringUtils.hexToBytes32(newOwnerHashInEmail);
