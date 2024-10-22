@@ -22,6 +22,8 @@ export default async function (): Promise<void> {
   const commandHandlerAddress = await commandHandler.getAddress();
   console.log("Command handler deployed at:", commandHandlerAddress);
 
+  const minimumDelay = 0;
+
   const module = await deployContract(
     hre,
     "EmailRecoveryModule",
@@ -30,6 +32,7 @@ export default async function (): Promise<void> {
       dkimRegistry,
       emailAuthImpl,
       commandHandlerAddress,
+      minimumDelay,
       factoryAddress,
     ],
     {

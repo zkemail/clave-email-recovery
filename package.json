@@ -8,8 +8,8 @@
   "dependencies": {
     "@openzeppelin/contracts": "^5.0.0",
     "@openzeppelin/contracts-upgradeable": "^5.0.0",
-    "@zk-email/contracts": "^6.1.5",
-    "@zk-email/email-recovery": "zkemail/email-recovery#matter-labs-audit-fixes",
+    "@zk-email/contracts": "https://gitpkg.vercel.app/zkemail/zk-email-verify/packages/contracts?057b8e95b7bca2884d8da384379c15be9975b30d",
+    "@zk-email/email-recovery": "0.0.11-preview",
     "ts-morph": "^19.0.0"
   },
   "devDependencies": {
