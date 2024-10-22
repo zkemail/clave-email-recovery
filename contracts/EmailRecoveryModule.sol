@@ -35,6 +35,7 @@ contract EmailRecoveryModule is
         address _dkimRegistry,
         address _emailAuthImpl,
         address _commandHandler,
+        uint256 _minimumDelay,
         address _factoryAddr,
         bytes32 _proxyBytecodeHash
     )
@@ -43,6 +44,7 @@ contract EmailRecoveryModule is
             _dkimRegistry,
             _emailAuthImpl,
             _commandHandler,
+            _minimumDelay,
             _factoryAddr,
             _proxyBytecodeHash
         )

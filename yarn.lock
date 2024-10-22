@@ -1733,15 +1733,7 @@
   version "3.0.0"
   resolved "https://codeload.github.com/kopy-kat/kernel/tar.gz/acc457ce5169929ce3ce0f06a9540f85ccc8b25f"
 
-"@zk-email/contracts@6.0.3":
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/@zk-email/contracts/-/contracts-6.0.3.tgz#0181ef9da5f1ecb0eb8dbe724a3488a26b01c700"
-  integrity sha512-nPSG27431Cz5bzPlR/ltn7qa9k+Joc/6LDHUz+JeFWEP/ff9VnzK11P0ay5qdX14qpQ647varPdxGtulosUtxw==
-  dependencies:
-    "@openzeppelin/contracts" "^5.0.0"
-    dotenv "^16.3.1"
-
-"@zk-email/contracts@6.2.0", "@zk-email/contracts@^6.1.5":
+"@zk-email/contracts@^6.1.5":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@zk-email/contracts/-/contracts-6.2.0.tgz#36550aea54a9a8962f0ca8ef16ad6f24bfec6942"
   integrity sha512-HlMyQNKmwdqfht6hHfTLgNnt/pGEc1cR5X4v8dMV+8IqoJTPbuvv19u69p/3U1W1SK2KUJl2Hg/bf0OxqVCNRQ==
@@ -1749,27 +1741,34 @@
     "@openzeppelin/contracts" "^5.0.0"
     dotenv "^16.3.1"
 
-"@zk-email/email-recovery@zkemail/email-recovery#matter-labs-audit-fixes":
-  version "0.0.9"
-  resolved "https://codeload.github.com/zkemail/email-recovery/tar.gz/6fb6d07ab8d7796ae8de7ab0f021fb249e6f9563"
+"@zk-email/contracts@https://gitpkg.vercel.app/zkemail/zk-email-verify/packages/contracts?feat/dkim-registry-updates":
+  version "6.2.0"
+  resolved "https://gitpkg.vercel.app/zkemail/zk-email-verify/packages/contracts?feat/dkim-registry-updates#920582f145b85ae4c1174e3b340191a7d5b3ec02"
+  dependencies:
+    "@openzeppelin/contracts" "^5.0.0"
+    "@openzeppelin/contracts-upgradeable" "^5.0.0"
+    dotenv "^16.3.1"
+
+"@zk-email/email-recovery@zkemail/email-recovery#matter-labs-audit-fixes-with-minimum-delay":
+  version "0.0.10"
+  resolved "https://codeload.github.com/zkemail/email-recovery/tar.gz/1c28d969bb9e25f84cde80147679fec03ea24fed"
   dependencies:
     "@matterlabs/era-contracts" "github:matter-labs/era-contracts"
     "@openzeppelin/contracts-upgradeable" "5.0.1"
     "@rhinestone/modulekit" "github:rhinestonewtf/modulekit"
-    "@zk-email/contracts" "6.0.3"
-    "@zk-email/ether-email-auth-contracts" "0.1.1-preview"
+    "@zk-email/contracts" "https://gitpkg.vercel.app/zkemail/zk-email-verify/packages/contracts?feat/dkim-registry-updates"
+    "@zk-email/ether-email-auth-contracts" "https://gitpkg.vercel.app/zkemail/ether-email-auth/packages/contracts?feat/audit-fix-2024-09-registry"
     erc7579-implementation "github:erc7579/erc7579-implementation"
     solidity-stringutils "github:LayerZero-Labs/solidity-stringutils"
 
-"@zk-email/ether-email-auth-contracts@0.1.1-preview":
+"@zk-email/ether-email-auth-contracts@https://gitpkg.vercel.app/zkemail/ether-email-auth/packages/contracts?feat/audit-fix-2024-09-registry":
   version "0.1.1-preview"
-  resolved "https://registry.yarnpkg.com/@zk-email/ether-email-auth-contracts/-/ether-email-auth-contracts-0.1.1-preview.tgz#525c8a935fecdaa8d9bb785514de143634988cf7"
-  integrity sha512-cgF86rZhtIHFmyyCviyLt+V7gA0A+ZZQi7kpO64k1SAGseIQ8MhQp6CRf1CILGt9vgoDTpO8g2IV/aJudQJhwg==
+  resolved "https://gitpkg.vercel.app/zkemail/ether-email-auth/packages/contracts?feat/audit-fix-2024-09-registry#74edfc93774261fba802c6f93e8b372388a0a1ca"
   dependencies:
     "@matterlabs/zksync-contracts" "^0.6.1"
     "@openzeppelin/contracts" "^5.0.0"
     "@openzeppelin/contracts-upgradeable" "^5.0.0"
-    "@zk-email/contracts" "6.2.0"
+    "@zk-email/contracts" "https://gitpkg.vercel.app/zkemail/zk-email-verify/packages/contracts?feat/dkim-registry-updates"
     solady "^0.0.123"
 
 JSONStream@1.3.2:
