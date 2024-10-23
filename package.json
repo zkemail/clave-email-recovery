@@ -11,6 +11,7 @@
     "@zk-email/contracts": "https://gitpkg.vercel.app/zkemail/zk-email-verify/packages/contracts?057b8e95b7bca2884d8da384379c15be9975b30d",
     "@zk-email/email-recovery": "0.0.11-preview",
     "@zk-email/ether-email-auth-contracts": "0.2.0-preview",
+    "solidity-stringutils": "https://github.com/Arachnid/solidity-stringutils.git#4b2fcc43fa0426e19ce88b1f1ec16f5903a2e461",
     "ts-morph": "^19.0.0"
   },
   "devDependencies": {
