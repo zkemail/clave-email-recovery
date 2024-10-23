@@ -30,6 +30,7 @@ const zkSyncSepolia: NetworkUserConfig = {
     zksync: true,
     verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification',
     chainId: 300,
+    accounts: [process.env.PRIVATE_KEY]
 };
 
 const inMemoryNode: NetworkUserConfig = {
@@ -57,16 +58,19 @@ const config: HardhatUserConfig = {
                   }
                 : undefined,
             libraries: {
-                '@zk-email/email-recovery/src/libraries/StringUtils.sol': {
-                    StringUtils: '0x7e390c46302Fb6D7f6C7b4e36937287eB678FBC0',
+                  "@zk-email/email-recovery/src/libraries/StringUtils.sol": {
+                    "StringUtils": "0xF9D368D27d2770576B1EDf18e58109F58a76f31c"
+                  },
+                  "@zk-email/ether-email-auth-contracts/src/libraries/DecimalUtils.sol": {
+                    "DecimalUtils": "0x5F0dE115075d5439CadF18510719956bA74C4A40"
+                  },
+                  "@zk-email/ether-email-auth-contracts/src/libraries/CommandUtils.sol": {
+                    "CommandUtils": "0xd29c10f57f88CD706c477C8E1e95400798026ba2"
+                  },
+                  "contracts/libraries/stringUtils.sol": {
+                    "StringUtils": "0x56127482203e986F5214df2F861240f7dd4112f1"
+                  }
                 },
-                '@zk-email/ether-email-auth-contracts/src/libraries/DecimalUtils.sol': {
-                    DecimalUtils: '0x90e964C4b200329BF0665D1A67BCdE787F61Fa3E',
-                },
-                '@zk-email/ether-email-auth-contracts/src/libraries/CommandUtils.sol': {
-                    CommandUtils: '0xae97b0A00943A633e67B5017A9F60C6e075bA1E9',
-                },
-            },
         },
     },
     defaultNetwork: 'zkSyncSepolia',
