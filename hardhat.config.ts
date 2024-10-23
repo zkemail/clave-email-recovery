@@ -58,13 +58,13 @@ const config: HardhatUserConfig = {
                 : undefined,
             libraries: {
                 '@zk-email/email-recovery/src/libraries/StringUtils.sol': {
-                    StringUtils: '0x7e390c46302Fb6D7f6C7b4e36937287eB678FBC0',
+                    StringUtils: '0xF9D368D27d2770576B1EDf18e58109F58a76f31c',
                 },
                 '@zk-email/ether-email-auth-contracts/src/libraries/DecimalUtils.sol': {
-                    DecimalUtils: '0x90e964C4b200329BF0665D1A67BCdE787F61Fa3E',
+                    DecimalUtils: '0xb6E766EAb892dFFD377F85679dDAef944Ad1ABfa',
                 },
                 '@zk-email/ether-email-auth-contracts/src/libraries/CommandUtils.sol': {
-                    CommandUtils: '0xae97b0A00943A633e67B5017A9F60C6e075bA1E9',
+                    CommandUtils: '0x5b307e22e1B5713BD9857c25647cC6b6620705eD',
                 },
             },
         },
