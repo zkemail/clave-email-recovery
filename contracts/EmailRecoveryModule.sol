@@ -14,10 +14,6 @@ contract EmailRecoveryModule is
     IModule,
     IEmailRecoveryModule
 {
-    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
-    /*                    CONSTANTS & STORAGE                     */
-    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
-
     /**
      * Account address to isInited
      */
