@@ -4,7 +4,7 @@ pragma solidity ^0.8.17;
 import {IModule} from "./interfaces/IModule.sol";
 import {IEmailRecoveryModule} from "@zk-email/email-recovery/src/interfaces/IEmailRecoveryModule.sol";
 import {IClaveAccount} from "./interfaces/IClave.sol";
-import {Errors} from "./libraries/ClaveErrors.sol";
+import {Errors} from "./libraries/Errors.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import {EmailRecoveryManagerZkSync} from "@zk-email/email-recovery/src/EmailRecoveryManagerZkSync.sol";
 import {GuardianManager} from "@zk-email/email-recovery/src/GuardianManager.sol";

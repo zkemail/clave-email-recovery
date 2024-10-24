@@ -3,7 +3,7 @@ pragma solidity ^0.8.17;
 
 library Errors {
     /*//////////////////////////////////////////////////////////////
-                          SOCIAL RECOVERY
+                          EMAIL RECOVERY
     //////////////////////////////////////////////////////////////*/
 
     error ALREADY_INITED();
