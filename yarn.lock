@@ -1267,36 +1267,37 @@
     solady "github:vectorized/solady"
     solhint "^4.1.1"
 
-"@rhinestone/erc4337-validation@^0.0.1-alpha.5":
-  version "0.0.1-alpha.5"
-  resolved "https://registry.yarnpkg.com/@rhinestone/erc4337-validation/-/erc4337-validation-0.0.1-alpha.5.tgz#ddcecdb0c43c68de7f542d0b3b48797cce7ba736"
-  integrity sha512-yOrYyQBrT0JfHb+rjvx4pqk8uItKxEtn7n8z3k0qbZTzkXaNS9pCUBsTxy0kp6T2SNUrbQ8I4DMSiyGqjdh2ng==
+"@rhinestone/erc4337-validation@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@rhinestone/erc4337-validation/-/erc4337-validation-0.0.2.tgz#d80c454674be32186dafa930376d4a05fc02113d"
+  integrity sha512-IZi34ngoQeRuf7rPEWVBpokVLKpgd8lBZQ/sQ+bstGSlUHpf/jMcnhPIz1aJFCa9Mx7auzrAz8A/rD0GJj5z7A==
   dependencies:
     "@openzeppelin/contracts" "5.0.1"
     account-abstraction "github:kopy-kat/account-abstraction#develop"
     account-abstraction-v0.6 "github:eth-infinitism/account-abstraction#v0.6.0"
     ds-test "github:dapphub/ds-test"
-    forge-std "github:foundry-rs/forge-std"
+    forge-std "github:foundry-rs/forge-std#8a225d81aa8e2e013580564588c79abb65eacc9e"
     prettier "^2.8.8"
     solady "github:vectorized/solady"
 
-"@rhinestone/module-bases@github:rhinestonewtf/module-bases":
+"@rhinestone/module-bases@github:rhinestonewtf/module-bases", "@rhinestone/module-bases@github:rhinestonewtf/module-bases#d048ec28c8ea8b4155db3ce4f027bc64cd41f9a7":
   version "0.0.1"
-  resolved "https://codeload.github.com/rhinestonewtf/module-bases/tar.gz/107cda409627e6f05285c7d8e1ea594d35fb3ac0"
+  uid d048ec28c8ea8b4155db3ce4f027bc64cd41f9a7
+  resolved "https://codeload.github.com/rhinestonewtf/module-bases/tar.gz/d048ec28c8ea8b4155db3ce4f027bc64cd41f9a7"
   dependencies:
     "@ERC4337/account-abstraction" "github:kopy-kat/account-abstraction#develop"
     erc7579 "github:erc7579/erc7579-implementation"
     forge-std "github:foundry-rs/forge-std"
 
 "@rhinestone/modulekit@github:rhinestonewtf/modulekit":
-  version "0.4.13"
-  resolved "https://codeload.github.com/rhinestonewtf/modulekit/tar.gz/14aac88587acd37c4150588242f3ccbdf0658c7b"
+  version "0.4.14"
+  resolved "https://codeload.github.com/rhinestonewtf/modulekit/tar.gz/0a313213a78d9b308fd1ec1c122209075566f051"
   dependencies:
     "@ERC4337/account-abstraction" "github:kopy-kat/account-abstraction#develop"
     "@ERC4337/account-abstraction-v0.6" "github:eth-infinitism/account-abstraction#v0.6.0"
     "@prb/math" "^4.0.2"
-    "@rhinestone/erc4337-validation" "^0.0.1-alpha.5"
-    "@rhinestone/module-bases" "github:rhinestonewtf/module-bases"
+    "@rhinestone/erc4337-validation" "^0.0.2"
+    "@rhinestone/module-bases" "github:rhinestonewtf/module-bases#d048ec28c8ea8b4155db3ce4f027bc64cd41f9a7"
     "@rhinestone/registry" "github:rhinestonewtf/registry#v1.0"
     "@rhinestone/safe7579" "github:rhinestonewtf/safe7579#v1.0.0"
     "@rhinestone/sentinellist" "github:rhinestonewtf/sentinellist"
@@ -1675,9 +1676,9 @@
   integrity sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==
 
 "@types/node@*":
-  version "22.7.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.8.tgz#a1dbf0dc5f71bdd2642fc89caef65d58747ce825"
-  integrity sha512-a922jJy31vqR5sk+kAdIENJjHblqcZ4RmERviFsER4WJcEONqxKcjNOlk0q7OUfrF5sddT+vng070cdfMlrPLg==
+  version "22.7.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.9.tgz#2bf2797b5e84702d8262ea2cf843c3c3c880d0e9"
+  integrity sha512-jrTfRC7FM6nChvU7X2KqcrgquofrWLFDeYC1hKfwNWomVvrn7JIksqf344WN2X/y8xrgqBd2dJATZV4GbatBfg==
   dependencies:
     undici-types "~6.19.2"
 
@@ -1694,9 +1695,9 @@
     undici-types "~6.19.2"
 
 "@types/node@^20.2.5":
-  version "20.16.14"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.16.14.tgz#67eeca19cd821f516ee7da2f2e72d319f47e6a4d"
-  integrity sha512-vtgGzjxLF7QT88qRHtXMzCWpAAmwonE7fwgVjFtXosUva2oSpnIEc3gNO9P7uIfOxKnii2f79/xtOnfreYtDaA==
+  version "20.17.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.17.0.tgz#d0620ba0fe4cf2a0f12351c7bdd805fc4e1f036b"
+  integrity sha512-a7zRo0f0eLo9K5X9Wp5cAqTUNGzuFLDG2R7C4HY2BhcMAsxgSPuRvAC1ZB6QkuUQXf0YZAgfOX2ZyrBa2n4nHQ==
   dependencies:
     undici-types "~6.19.2"
 
@@ -3174,6 +3175,10 @@ foreground-child@^3.1.0:
 "forge-std@github:foundry-rs/forge-std":
   version "1.9.3"
   resolved "https://codeload.github.com/foundry-rs/forge-std/tar.gz/1de6eecf821de7fe2c908cc48d3ab3dced20717f"
+
+"forge-std@github:foundry-rs/forge-std#8a225d81aa8e2e013580564588c79abb65eacc9e":
+  version "1.9.3"
+  resolved "https://codeload.github.com/foundry-rs/forge-std/tar.gz/8a225d81aa8e2e013580564588c79abb65eacc9e"
 
 "forge-std@github:foundry-rs/forge-std#v1.7.6":
   version "1.7.6"
