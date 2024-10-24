@@ -1,8 +1,8 @@
 # Clave Email Recovery Contracts
 
 <p align="center">
-  <img src="clave-logo.svg" alt="Clave" height="150"/>
-  <img src="zk-email-logo.jpg" alt="ZkEmail" height="150" style="margin-left: 10px;"/>
+  <img src="clave-logo.svg" alt="Clave" height="100"/>
+  <img src="zk-email-logo.jpg" alt="ZkEmail" height="100"/>
 </p>
 
 
