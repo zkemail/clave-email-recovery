@@ -12,8 +12,13 @@ library StringUtils {
      * @param hexStr The hexadecimal string to convert.
      * @return result A bytes32 value representing the converted hexadecimal string.
      */
-    function hexToBytes32(string calldata hexStr) public pure returns (bytes32 result) {
-        require(hexStr.toSlice().startsWith("0x".toSlice()), "invalid hex prefix");
+    function hexToBytes32(
+        string calldata hexStr
+    ) public pure returns (bytes32 result) {
+        require(
+            hexStr.toSlice().startsWith("0x".toSlice()),
+            "invalid hex prefix"
+        );
         hexStr = hexStr[2:];
         require(bytes(hexStr).length == 64, "invalid hex string length");
         uint256[] memory ints = hex2Ints(hexStr);
@@ -29,17 +34,25 @@ library StringUtils {
      * @param hexStr The hexadecimal string to convert. Must start with "0x" prefix.
      * @return A bytes array representing the converted hexadecimal string.
      */
-    function hexToBytes(string calldata hexStr) public pure returns (bytes memory) {
-        require(hexStr.toSlice().startsWith("0x".toSlice()), "invalid hex prefix");
+    function hexToBytes(
+        string calldata hexStr
+    ) public pure returns (bytes memory) {
+        require(
+            hexStr.toSlice().startsWith("0x".toSlice()),
+            "invalid hex prefix"
+        );
         string memory hexStrNoPrefix = hexStr[2:];
         bytes memory hexBytes = bytes(hexStrNoPrefix);
+
         require(hexBytes.length % 2 == 0, "invalid hex string length");
 
-        bytes memory result = new bytes(hexBytes.length / 2);
+        uint256 halfLength = hexBytes.length / 2;
+        bytes memory result = new bytes(halfLength);
 
-        for (uint256 i = 0; i < hexBytes.length / 2; i++) {
+        for (uint256 i = 0; i < halfLength; i++) {
             result[i] = bytes1(
-                (hexChar2Int(hexBytes[2 * i]) << 4) + hexChar2Int(hexBytes[2 * i + 1])
+                (hexChar2Int(hexBytes[2 * i]) << 4) +
+                    hexChar2Int(hexBytes[2 * i + 1])
             );
         }
         return result;
@@ -50,11 +63,15 @@ library StringUtils {
      * @param hexStr The hexadecimal string to convert.
      * @return An array of integers, where each integer represents two hexadecimal characters.
      */
-    function hex2Ints(string memory hexStr) private pure returns (uint256[] memory) {
+    function hex2Ints(
+        string memory hexStr
+    ) private pure returns (uint256[] memory) {
         uint256[] memory result = new uint256[](bytes(hexStr).length / 2);
         for (uint256 i = 0; i < result.length; i++) {
             result[i] =
-                16 * hexChar2Int(bytes(hexStr)[2 * i]) + hexChar2Int(bytes(hexStr)[2 * i + 1]);
+                16 *
+                hexChar2Int(bytes(hexStr)[2 * i]) +
+                hexChar2Int(bytes(hexStr)[2 * i + 1]);
         }
         return result;
     }
