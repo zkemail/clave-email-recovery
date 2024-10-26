@@ -57,10 +57,10 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
     }
 
     /**
-     * @notice Validates the command params for an acceptance email
+     * @notice Validates the command params for a recovery email
      * @param templateIdx The index of the template used for the recovery email
      * @param commandParams The command parameters of the recovery email.
-     * @return accountInEmail The account address in the acceptance email
+     * @return accountInEmail The account address in the recovery email
      */
     function validateRecoveryCommand(
         uint256 templateIdx,
