@@ -24,7 +24,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
     function parseRecoveryDataHash(
         uint256 templateIdx,
         bytes[] memory commandParams
-    ) external view returns (bytes32) {
+    ) external pure returns (bytes32) {
         if (templateIdx != 0 || commandParams.length != 2) {
             revert InvalidCommandParams();
         }
@@ -65,7 +65,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
     function validateRecoveryCommand(
         uint256 templateIdx,
         bytes[] calldata commandParams
-    ) public view returns (address) {
+    ) public pure returns (address) {
         if (templateIdx != 0 || commandParams.length != 2) {
             revert InvalidCommandParams();
         }
@@ -75,7 +75,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
             commandParams[1],
             (string)
         );
-        bytes32 calldataHash = StringUtils.hexToBytes32(newOwnerHashInEmail);
+        StringUtils.hexToBytes32(newOwnerHashInEmail);
 
         if (accountInEmail == address(0)) {
             revert InvalidAccount();
@@ -133,7 +133,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
      * @param commandParams The command parameters of the acceptance email.
      */
     function extractRecoveredAccountFromAcceptanceCommand(
-        bytes[] memory commandParams,
+        bytes[] calldata commandParams,
         uint256 /* templateIdx */
     ) public pure returns (address) {
         return abi.decode(commandParams[0], (address));
@@ -145,7 +145,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
      * @param commandParams The command parameters of the recovery email.
      */
     function extractRecoveredAccountFromRecoveryCommand(
-        bytes[] memory commandParams,
+        bytes[] calldata commandParams,
         uint256 /* templateIdx */
     ) public pure returns (address) {
         return abi.decode(commandParams[0], (address));
