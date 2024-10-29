@@ -14,19 +14,11 @@ library StringUtils {
      */
     function hexToBytes32(
         string calldata hexStr
-    ) public pure returns (bytes32 result) {
-        require(
-            hexStr.toSlice().startsWith("0x".toSlice()),
-            "invalid hex prefix"
-        );
-        hexStr = hexStr[2:];
-        require(bytes(hexStr).length == 64, "invalid hex string length");
-        uint256[] memory ints = hex2Ints(hexStr);
-        uint256 sum = 0;
-        for (uint256 i = 0; i < 32; i++) {
-            sum = (256 * sum + ints[i]);
-        }
-        return bytes32(sum);
+    ) public pure returns (bytes32) {
+        bytes memory converted = hexToBytes(hexStr);
+        require(converted.length == 32, "invalid hex string length");
+
+        return bytes32(converted);
     }
 
     /**
@@ -54,24 +46,6 @@ library StringUtils {
                 (hexChar2Int(hexBytes[2 * i]) << 4) +
                     hexChar2Int(hexBytes[2 * i + 1])
             );
-        }
-        return result;
-    }
-
-    /**
-     * @dev Converts a hexadecimal string to an array of integers.
-     * @param hexStr The hexadecimal string to convert.
-     * @return An array of integers, where each integer represents two hexadecimal characters.
-     */
-    function hex2Ints(
-        string memory hexStr
-    ) private pure returns (uint256[] memory) {
-        uint256[] memory result = new uint256[](bytes(hexStr).length / 2);
-        for (uint256 i = 0; i < result.length; i++) {
-            result[i] =
-                16 *
-                hexChar2Int(bytes(hexStr)[2 * i]) +
-                hexChar2Int(bytes(hexStr)[2 * i + 1]);
         }
         return result;
     }
