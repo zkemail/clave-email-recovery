@@ -117,13 +117,14 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
         returns (string[][] memory)
     {
         string[][] memory templates = new string[][](1);
-        templates[0] = new string[](6);
+        templates[0] = new string[](7);
         templates[0][0] = "Recover";
         templates[0][1] = "account";
         templates[0][2] = "{ethAddr}";
-        templates[0][3] = "to";
-        templates[0][4] = "owner";
-        templates[0][5] = "{string}";
+        templates[0][3] = "using";
+        templates[0][4] = "recovery";
+        templates[0][5] = "hash";
+        templates[0][6] = "{string}";
         return templates;
     }
 
