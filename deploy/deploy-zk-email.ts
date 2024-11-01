@@ -1,13 +1,17 @@
 import * as hre from "hardhat";
 import { deployContract, getWallet } from "./utils";
 
-const factoryAddress = "0xae3c9D26fa525d0Bb119B0b82BBa99C243636f92";
-const verifier = "0xbabFc29e79b4935e1B99515c02354CdA2c2fDA6A";
-const dkimRegistry = "0x2D3908e61B436A80bfDDD2772E7179da5A87a597";
-const emailAuthImpl = "0x87c0F604256f4C92D7e80699238623370e266A16";
+const factoryAddress = "0xeAf2aCE9a926Ab3a155dCbeDe74A1541d471E286";
+const verifier = "0xfCb6e1BAf589dc25f1224998eA0a256e8A542A29";
+const dkimRegistry = "0x140ba2dDf1D49B4BC4Bce0D5816b424584703B53";
+const emailAuthImpl = "0xe4E21f8dA20c66FB05feef1668e6a8529A9Ac3C9";
+const bytecodeHash =
+  "0x01000081e1a320a6d3dc2345f32b97538854bcf0c95ef3ad8e2a17227f9104f6";
+const minimumDelay = 0;
 
 export default async function (): Promise<void> {
   const wallet = getWallet(hre);
+
   const contractArtifactName = "EmailRecoveryCommandHandler";
   const commandHandler = await deployContract(
     hre,
@@ -22,11 +26,17 @@ export default async function (): Promise<void> {
   const commandHandlerAddress = await commandHandler.getAddress();
   console.log("Command handler deployed at:", commandHandlerAddress);
 
-  const minimumDelay = 0;
+  const proxyArtifactName =
+    "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol:ERC1967Proxy";
 
-  const module = await deployContract(
+  await deployContract(hre, proxyArtifactName, [emailAuthImpl, "0x"], {
+    silent: true,
+  });
+
+  const EmailRecoveryModuleArtifactName = "EmailRecoveryModule";
+  const emailRecoveryModule = await deployContract(
     hre,
-    "EmailRecoveryModule",
+    EmailRecoveryModuleArtifactName,
     [
       verifier,
       dkimRegistry,
@@ -34,6 +44,7 @@ export default async function (): Promise<void> {
       commandHandlerAddress,
       minimumDelay,
       factoryAddress,
+      bytecodeHash,
     ],
     {
       wallet,
@@ -41,6 +52,6 @@ export default async function (): Promise<void> {
     }
   );
 
-  const moduleAddress = await module.getAddress();
-  console.log("Module deployed at:", moduleAddress);
+  const emailRecoveryModuleAddress = await emailRecoveryModule.getAddress();
+  console.log("Email recovery module deployed at:", emailRecoveryModuleAddress);
 }
