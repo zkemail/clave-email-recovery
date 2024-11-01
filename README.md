@@ -1,23 +1,22 @@
 # Clave Email Recovery Contracts
 
 <p align="center">
-  <img src="clave-logo.svg" alt="Clave" height="100"/>
+  <img src="clave-logo3.png" alt="Clave" height="100"/>
   <img src="zk-email-logo.jpg" alt="ZkEmail" height="100"/>
 </p>
 
-
 ## Project structure
 
--   `/contracts`: smart contracts.
--   `/deploy`: deployment and contract interaction scripts.
--   `/test`: test files
--   `hardhat.config.ts`: configuration file.
+- `/contracts`: smart contracts.
+- `/deploy`: deployment and contract interaction scripts.
+- `/test`: test files
+- `hardhat.config.ts`: configuration file.
 
 ## Commands
 
--   `npx hardhat compile` will compile the contracts, typescript bindings are generated automatically.
--   `npx hardhat deploy {contract name} {constructor arguments}` will deploy and verify the contract. Requires [environment variable setup](#environment-variables).
--   `npm run test`: run tests.
+- `npx hardhat compile` will compile the contracts, typescript bindings are generated automatically.
+- `npx hardhat deploy {contract name} {constructor arguments}` will deploy and verify the contract. Requires [environment variable setup](#environment-variables).
+- `npm run test`: run tests.
 
 ### Environment variables
 
@@ -31,6 +30,6 @@ PRIVATE_KEY=123cde574ccff....
 
 ## Official Links
 
--   [Website](https://getclave.io/)
--   [GitHub](https://github.com/getclave)
--   [Twitter](https://twitter.com/getclave)
+- [Website](https://getclave.io/)
+- [GitHub](https://github.com/getclave)
+- [Twitter](https://twitter.com/getclave)
