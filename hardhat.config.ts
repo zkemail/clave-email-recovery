@@ -13,6 +13,20 @@ import type { NetworkUserConfig } from "hardhat/types";
 
 import "./tasks/deploy";
 
+const mainnet = {
+  DecimalUtils: "0x687C913942fBeDAed383420c25f06c675D63Fd59",
+  CommandUtils: "0xA6117a66C40ec9eD65B251874D70cC9E7cF6052b",
+  StringUtils: "0x6Cd2d8aE77Fa5455200B338ffA06BFB0970e7A57",
+};
+
+const testnet = {
+  DecimalUtils: "0x95C21cE16f9d20fE406ce67D8eFcd521b162C6Fa",
+  CommandUtils: "0x691727F67b2AbE8Bba1b37b198A5EE491a7084be",
+  StringUtils: "0x75DcAc758184454B9d8c96B95272899FECA2BA66",
+};
+
+const VARS = testnet;
+
 dotenv.config();
 
 const zkSyncMainnet: NetworkUserConfig = {
@@ -56,17 +70,14 @@ const config: HardhatUserConfig = {
           }
         : undefined,
       libraries: {
-        "@zk-email/email-recovery/src/libraries/StringUtils.sol": {
-          StringUtils: "0xF9D368D27d2770576B1EDf18e58109F58a76f31c",
+        "@zk-email/ether-email-auth-contracts/src/libraries/StringUtils.sol": {
+          StringUtils: VARS.StringUtils,
         },
         "@zk-email/ether-email-auth-contracts/src/libraries/DecimalUtils.sol": {
-          DecimalUtils: "0xb6E766EAb892dFFD377F85679dDAef944Ad1ABfa",
+          DecimalUtils: VARS.DecimalUtils,
         },
         "@zk-email/ether-email-auth-contracts/src/libraries/CommandUtils.sol": {
-          CommandUtils: "0x5b307e22e1B5713BD9857c25647cC6b6620705eD",
-        },
-        "contracts/libraries/StringUtils.sol": {
-          StringUtils: "0x4158e275f603C0C37a571F4aB695D7305AE5511d",
+          CommandUtils: VARS.CommandUtils,
         },
       },
     },

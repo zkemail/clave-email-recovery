@@ -1,13 +1,27 @@
 import * as hre from "hardhat";
 import { deployContract, getWallet } from "./utils";
 
-const factoryAddress = "0xeAf2aCE9a926Ab3a155dCbeDe74A1541d471E286";
-const verifier = "0xfCb6e1BAf589dc25f1224998eA0a256e8A542A29";
-const dkimRegistry = "0x140ba2dDf1D49B4BC4Bce0D5816b424584703B53";
-const emailAuthImpl = "0xe4E21f8dA20c66FB05feef1668e6a8529A9Ac3C9";
-const bytecodeHash =
-  "0x01000081e1a320a6d3dc2345f32b97538854bcf0c95ef3ad8e2a17227f9104f6";
-const minimumDelay = 0;
+const mainnet = {
+  factoryAddress: "0x147E23A284dde7FF6b42f835253B9b0CBce6c84e",
+  verifier: "0x520E9fc008f58ba339EEB6AbAeF30d3325F3F5C4",
+  dkimRegistry: "0xA10bAa5FA41E25Eb50711a57AA2f0a9c06A6A009",
+  emailAuthImpl: "0xe8b70B310D0f0e35985e757c5a73290Dcc24Eb69",
+  bytecodeHash:
+    "0x010000810f12e857cc327d0fe44fd50632c222c2082ffa123c42102ff78a47cd",
+  minimumDelay: 0,
+};
+
+const testnet = {
+  factoryAddress: "0x1a9806ECa5a86e2A614647a2B1245762520fB729",
+  verifier: "0xbcd38daF327818De796fE8de684b392A4B4584C8",
+  dkimRegistry: "0x743ADbd9886Aebe79a9D2dEB4f5c8686DB7463D9",
+  emailAuthImpl: "0x51233067952888A99E692d263550e6f33Ab00194",
+  bytecodeHash:
+    "0x01000081bdf506a8c0ed71857afdab50746414f3bfc88c376acfb2bcfb3baa18",
+  minimumDelay: 0,
+};
+
+const VARS = testnet;
 
 export default async function (): Promise<void> {
   const wallet = getWallet(hre);
@@ -29,7 +43,7 @@ export default async function (): Promise<void> {
   const proxyArtifactName =
     "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol:ERC1967Proxy";
 
-  await deployContract(hre, proxyArtifactName, [emailAuthImpl, "0x"], {
+  await deployContract(hre, proxyArtifactName, [VARS.emailAuthImpl, "0x"], {
     silent: true,
   });
 
@@ -38,13 +52,13 @@ export default async function (): Promise<void> {
     hre,
     EmailRecoveryModuleArtifactName,
     [
-      verifier,
-      dkimRegistry,
-      emailAuthImpl,
+      VARS.verifier,
+      VARS.dkimRegistry,
+      VARS.emailAuthImpl,
       commandHandlerAddress,
-      minimumDelay,
-      factoryAddress,
-      bytecodeHash,
+      VARS.minimumDelay,
+      VARS.factoryAddress,
+      VARS.bytecodeHash,
     ],
     {
       wallet,

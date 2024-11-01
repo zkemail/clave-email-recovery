@@ -3,7 +3,7 @@ pragma solidity 0.8.26;
 
 import {IEmailRecoveryCommandHandler} from "@zk-email/email-recovery/src/interfaces/IEmailRecoveryCommandHandler.sol";
 import {IEmailRecoveryManager} from "@zk-email/email-recovery/src/interfaces/IEmailRecoveryManager.sol";
-import {StringUtils} from "@zk-email/email-recovery/src/libraries/StringUtils.sol";
+import {StringUtils} from "@zk-email/ether-email-auth-contracts/src/libraries/StringUtils.sol";
 
 /**
  * Handler contract that defines command templates and how to validate them
