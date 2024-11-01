@@ -24,7 +24,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
     function parseRecoveryDataHash(
         uint256 templateIdx,
         bytes[] memory commandParams
-    ) external view returns (bytes32) {
+    ) external pure returns (bytes32) {
         if (templateIdx != 0 || commandParams.length != 2) {
             revert InvalidCommandParams();
         }
@@ -57,15 +57,15 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
     }
 
     /**
-     * @notice Validates the command params for an acceptance email
+     * @notice Validates the command params for a recovery email
      * @param templateIdx The index of the template used for the recovery email
      * @param commandParams The command parameters of the recovery email.
-     * @return accountInEmail The account address in the acceptance email
+     * @return accountInEmail The account address in the recovery email
      */
     function validateRecoveryCommand(
         uint256 templateIdx,
         bytes[] calldata commandParams
-    ) public view returns (address) {
+    ) public pure returns (address) {
         if (templateIdx != 0 || commandParams.length != 2) {
             revert InvalidCommandParams();
         }
@@ -75,7 +75,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
             commandParams[1],
             (string)
         );
-        bytes32 calldataHash = StringUtils.hexToBytes32(newOwnerHashInEmail);
+        StringUtils.hexToBytes32(newOwnerHashInEmail);
 
         if (accountInEmail == address(0)) {
             revert InvalidAccount();
@@ -117,13 +117,14 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
         returns (string[][] memory)
     {
         string[][] memory templates = new string[][](1);
-        templates[0] = new string[](6);
+        templates[0] = new string[](7);
         templates[0][0] = "Recover";
         templates[0][1] = "account";
         templates[0][2] = "{ethAddr}";
-        templates[0][3] = "to";
-        templates[0][4] = "owner";
-        templates[0][5] = "{string}";
+        templates[0][3] = "using";
+        templates[0][4] = "recovery";
+        templates[0][5] = "hash";
+        templates[0][6] = "{string}";
         return templates;
     }
 
@@ -133,7 +134,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
      * @param commandParams The command parameters of the acceptance email.
      */
     function extractRecoveredAccountFromAcceptanceCommand(
-        bytes[] memory commandParams,
+        bytes[] calldata commandParams,
         uint256 /* templateIdx */
     ) public pure returns (address) {
         return abi.decode(commandParams[0], (address));
@@ -145,7 +146,7 @@ contract EmailRecoveryCommandHandler is IEmailRecoveryCommandHandler {
      * @param commandParams The command parameters of the recovery email.
      */
     function extractRecoveredAccountFromRecoveryCommand(
-        bytes[] memory commandParams,
+        bytes[] calldata commandParams,
         uint256 /* templateIdx */
     ) public pure returns (address) {
         return abi.decode(commandParams[0], (address));
