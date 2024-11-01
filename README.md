@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="clave-logo.png" alt="Clave" height="100"/>
-  <img src="zk-email-logo.jpg" alt="ZkEmail" height="100"/>
+  <img src="zk-email-logo.png" alt="ZkEmail" height="100"/>
 </p>
 
 ## Project structure
