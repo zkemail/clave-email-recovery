@@ -11,6 +11,7 @@
     "@zk-email/contracts": "^6.3.1",
     "@zk-email/email-recovery": "1.0.0",
     "@zk-email/ether-email-auth-contracts": "1.0.0",
+    "commander": "^12.1.0",
     "ts-morph": "^19.0.0"
   },
   "devDependencies": {
