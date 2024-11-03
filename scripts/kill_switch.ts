@@ -10,15 +10,6 @@ const ZKSYNC_SEPOLIA_CHAIN_ID = 300;
 // TODO: Please modify the following values according to your specific use case
 const MODULE_ADDRESS = "0x037d80f98aE461DC307F16524EC0Fc53b2E9E0b1"; // For zksync sepolia
 
-function computeSignedMsg(prefix: string, domainName: string, publicKeyHash: string): string {
-    return `${prefix}domain=${domainName};public_key_hash=${publicKeyHash};`;
-}
-
-async function signMessage(message: string, privateKey: string): Promise<string> {
-    const wallet = new ethers.Wallet(privateKey);
-    return await wallet.signMessage(message);
-}
-
 function initializeContract(privateKey: string) {
     const provider = new ethers.JsonRpcProvider(ZKSYNC_SEPOLIA_RPC_URL, {
         chainId: ZKSYNC_SEPOLIA_CHAIN_ID,
