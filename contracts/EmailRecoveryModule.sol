@@ -33,6 +33,7 @@ contract EmailRecoveryModule is
      * @param _emailAuthImpl Address of the email auth implementation
      * @param _commandHandler Address of the command handler contract
      * @param _minimumDelay Minimum delay period
+     * @param _killSwitchAuthorizer Address of the kill switch authorizer
      * @param _factoryAddr Address of the factory contract
      * @param _proxyBytecodeHash The proxy contract bytecode hash
      */
@@ -42,6 +43,7 @@ contract EmailRecoveryModule is
         address _emailAuthImpl,
         address _commandHandler,
         uint256 _minimumDelay,
+        address _killSwitchAuthorizer,
         address _factoryAddr,
         bytes32 _proxyBytecodeHash
     )
@@ -51,6 +53,7 @@ contract EmailRecoveryModule is
             _emailAuthImpl,
             _commandHandler,
             _minimumDelay,
+            _killSwitchAuthorizer,
             _factoryAddr,
             _proxyBytecodeHash
         )

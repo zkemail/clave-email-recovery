@@ -9,6 +9,7 @@ const mainnet = {
   bytecodeHash:
     "0x010000810f12e857cc327d0fe44fd50632c222c2082ffa123c42102ff78a47cd",
   minimumDelay: 0,
+  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000" // Please change this to the address of the kill switch authorizer
 };
 
 const testnet = {
@@ -19,6 +20,7 @@ const testnet = {
   bytecodeHash:
     "0x01000081bdf506a8c0ed71857afdab50746414f3bfc88c376acfb2bcfb3baa18",
   minimumDelay: 0,
+  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000" // Please change this to the address of the kill switch authorizer
 };
 
 const VARS = testnet;
@@ -57,6 +59,7 @@ export default async function (): Promise<void> {
       VARS.emailAuthImpl,
       commandHandlerAddress,
       VARS.minimumDelay,
+      VARS.killSwitchAuthorizer,
       VARS.factoryAddress,
       VARS.bytecodeHash,
     ],
