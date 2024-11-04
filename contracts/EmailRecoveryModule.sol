@@ -153,4 +153,15 @@ contract EmailRecoveryModule is
 
         emit RecoveryExecuted(account, newOwner);
     }
+
+    function deployEmailAuthDebug(
+        address recoveredAccount,
+        bytes32 accountSalt
+    ) public returns (address) {
+        return
+            EmailRecoveryManagerZkSync.deployEmailAuthProxy(
+                recoveredAccount,
+                accountSalt
+            );
+    }
 }
