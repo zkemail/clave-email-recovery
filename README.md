@@ -33,3 +33,11 @@ PRIVATE_KEY=123cde574ccff....
 - [Website](https://getclave.io/)
 - [GitHub](https://github.com/getclave)
 - [Twitter](https://twitter.com/getclave)
+
+## Usage of scripts
+
+scripts/dkim_registry.ts
+
+```
+$ npx ts-node scripts/dkim_registry.ts --help
+```

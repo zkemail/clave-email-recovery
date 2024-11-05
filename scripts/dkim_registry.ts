@@ -1,5 +1,5 @@
 // This script calls setDKIMPublicKeyHash or revokeDKIMPublicKeyHash in UserOverridableDKIMRegistry on zksync sepolia
-// Usage: npx ts-node scripts/dkim_registry.ts --command set --private-key <sender-private-key> --authorizer-private-key <authorizer-private-key>
+// Please run `npx ts-node scripts/dkim_registry.ts --help`
 
 import { Command } from 'commander';
 import { Contract, ethers } from 'ethers';
