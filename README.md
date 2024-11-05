@@ -41,3 +41,9 @@ scripts/dkim_registry.ts
 ```
 $ npx ts-node scripts/dkim_registry.ts --help
 ```
+
+scripts/kill_switch.ts
+
+```
+$ npx ts-node scripts/kill_switch.ts --help
+```

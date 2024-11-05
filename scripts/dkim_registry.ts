@@ -86,11 +86,6 @@ async function revokeDKIMPublicKeyHash(
 async function main() {
     const program = new Command();
 
-    // Check if no arguments were provided
-    if (process.argv.length <= 2) {
-        program.help();
-    }
-
     program
         .name('dkim-registry')
         .description('CLI tool for managing DKIM registry entries')
@@ -102,12 +97,19 @@ async function main() {
         .requiredOption('-k, --public-key-hash <hash>', 'Public key hash')
         .requiredOption('-a, --authorizer <address>', 'Authorizer address')
         .requiredOption('-ap, --authorizer-private-key <key>', 'Authorizer private key')
-        .on('--help', () => {
-            console.log('');
-            console.log('Example call:');
-            console.log('  $ npx ts-node scripts/dkim_registry.ts --command set --private-key <sender-private-key> --authorizer <authorizer-address> --authorizer-private-key <authorizer-private-key> --registry-address <address> --domain-name <name> --public-key-hash <hash>');
-            console.log('  $ npx ts-node scripts/dkim_registry.ts --command set --private-key 0x3d3cbc973389cb26f657686445bcc75662b415b656078503592ac8c1abb8810e --authorizer 0x55bE1B079b53962746B2e86d12f158a41DF294A6 --authorizer-private-key 0x509ca2e9e6acf0ba086477910950125e698d4ea70fa6f63e000c5a22bda9361c --registry-address 0x037d80f98aE461DC307F16524EC0Fc53b2E9E0b1 --domain-name gmail.com --public-key-hash 0x0ea9c777dc7110e5a9e89b13f0cfc540e3845ba120b2b6dc24024d61488d4788');
-        })
+        .helpOption('-h, --help', 'Display help for command')
+        .addHelpText('after', `
+
+Example usage:
+  npx ts-node scripts/dkim_registry.ts --command set --private-key 0x3d3cbc973389cb26f657686445bcc75662b415b656078503592ac8c1abb8810e --authorizer 0x55bE1B079b53962746B2e86d12f158a41DF294A6 --authorizer-private-key 0x509ca2e9e6acf0ba086477910950125e698d4ea70fa6f63e000c5a22bda9361c --registry-address 0x037d80f98aE461DC307F16524EC0Fc53b2E9E0b1 --domain-name gmail.com --public-key-hash 0x0ea9c777dc7110e5a9e89b13f0cfc540e3845ba120b2b6dc24024d61488d4788
+            
+        `)
+        // .on('--help', () => {
+        //     console.log('');
+        //     console.log('Example call:');
+        //     console.log('  $ npx ts-node scripts/dkim_registry.ts --command set --private-key <sender-private-key> --authorizer <authorizer-address> --authorizer-private-key <authorizer-private-key> --registry-address <address> --domain-name <name> --public-key-hash <hash>');
+        //     console.log('  $ npx ts-node scripts/dkim_registry.ts --command set --private-key 0x3d3cbc973389cb26f657686445bcc75662b415b656078503592ac8c1abb8810e --authorizer 0x55bE1B079b53962746B2e86d12f158a41DF294A6 --authorizer-private-key 0x509ca2e9e6acf0ba086477910950125e698d4ea70fa6f63e000c5a22bda9361c --registry-address 0x037d80f98aE461DC307F16524EC0Fc53b2E9E0b1 --domain-name gmail.com --public-key-hash 0x0ea9c777dc7110e5a9e89b13f0cfc540e3845ba120b2b6dc24024d61488d4788');
+        // })
         .parse(process.argv);
 
     const options = program.opts();
