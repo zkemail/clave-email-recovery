@@ -29,46 +29,64 @@ export default async function (): Promise<void> {
   const wallet = getWallet(hre);
 
   const contractArtifactName = "EmailRecoveryCommandHandler";
-  const commandHandler = await deployContract(
-    hre,
-    contractArtifactName,
-    undefined,
-    {
-      wallet,
-      silent: false,
+  
+  try {
+    const commandHandler = await deployContract(
+      hre,
+      contractArtifactName,
+      undefined,
+      {
+        wallet,
+        silent: false,
+      }
+    );
+
+    const commandHandlerAddress = await commandHandler.getAddress();
+    console.log("Command handler deployed at:", commandHandlerAddress);
+
+    const proxyArtifactName =
+      "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol:ERC1967Proxy";
+
+    try {
+      const proxy = await deployContract(hre, proxyArtifactName, [VARS.emailAuthImpl, "0x"], {
+        silent: true,
+      });
+
+      // Save the proxy address if necessary
+      const proxyAddress = await proxy.getAddress();
+      console.log("Proxy deployed at:", proxyAddress);
+    } catch (error) {
+      console.error("Error deploying proxy contract:", error);
     }
-  );
 
-  const commandHandlerAddress = await commandHandler.getAddress();
-  console.log("Command handler deployed at:", commandHandlerAddress);
+    const EmailRecoveryModuleArtifactName = "EmailRecoveryModule";
+    
+    try {
+      const emailRecoveryModule = await deployContract(
+        hre,
+        EmailRecoveryModuleArtifactName,
+        [
+          VARS.verifier,
+          VARS.dkimRegistry,
+          VARS.emailAuthImpl,
+          commandHandlerAddress,
+          VARS.minimumDelay,
+          VARS.killSwitchAuthorizer,
+          VARS.factoryAddress,
+          VARS.bytecodeHash,
+        ],
+        {
+          wallet,
+          silent: false,
+        }
+      );
 
-  const proxyArtifactName =
-    "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol:ERC1967Proxy";
-
-  await deployContract(hre, proxyArtifactName, [VARS.emailAuthImpl, "0x"], {
-    silent: true,
-  });
-
-  const EmailRecoveryModuleArtifactName = "EmailRecoveryModule";
-  const emailRecoveryModule = await deployContract(
-    hre,
-    EmailRecoveryModuleArtifactName,
-    [
-      VARS.verifier,
-      VARS.dkimRegistry,
-      VARS.emailAuthImpl,
-      commandHandlerAddress,
-      VARS.minimumDelay,
-      VARS.killSwitchAuthorizer,
-      VARS.factoryAddress,
-      VARS.bytecodeHash,
-    ],
-    {
-      wallet,
-      silent: false,
+      const emailRecoveryModuleAddress = await emailRecoveryModule.getAddress();
+      console.log("Email recovery module deployed at:", emailRecoveryModuleAddress);
+    } catch (error) {
+      console.error("Error deploying Email Recovery Module:", error);
     }
-  );
-
-  const emailRecoveryModuleAddress = await emailRecoveryModule.getAddress();
-  console.log("Email recovery module deployed at:", emailRecoveryModuleAddress);
+  } catch (error) {
+    console.error("An error occurred during deployment:", error);
+  }
 }
