@@ -1,13 +1,33 @@
 import * as hre from "hardhat";
 import { deployContract, getWallet } from "./utils";
 
-const factoryAddress = "0xae3c9D26fa525d0Bb119B0b82BBa99C243636f92";
-const verifier = "0xbabFc29e79b4935e1B99515c02354CdA2c2fDA6A";
-const dkimRegistry = "0x2D3908e61B436A80bfDDD2772E7179da5A87a597";
-const emailAuthImpl = "0x87c0F604256f4C92D7e80699238623370e266A16";
+const mainnet = {
+  factoryAddress: "0x147E23A284dde7FF6b42f835253B9b0CBce6c84e",
+  verifier: "0x520E9fc008f58ba339EEB6AbAeF30d3325F3F5C4",
+  dkimRegistry: "0xA10bAa5FA41E25Eb50711a57AA2f0a9c06A6A009",
+  emailAuthImpl: "0xe8b70B310D0f0e35985e757c5a73290Dcc24Eb69",
+  bytecodeHash:
+    "0x010000810f12e857cc327d0fe44fd50632c222c2082ffa123c42102ff78a47cd",
+  minimumDelay: 0,
+  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000" // Please change this to the address of the kill switch authorizer
+};
+
+const testnet = {
+  factoryAddress: "0x1a9806ECa5a86e2A614647a2B1245762520fB729",
+  verifier: "0xbcd38daF327818De796fE8de684b392A4B4584C8",
+  dkimRegistry: "0x743ADbd9886Aebe79a9D2dEB4f5c8686DB7463D9",
+  emailAuthImpl: "0x51233067952888A99E692d263550e6f33Ab00194",
+  bytecodeHash:
+    "0x01000081bdf506a8c0ed71857afdab50746414f3bfc88c376acfb2bcfb3baa18",
+  minimumDelay: 0,
+  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000" // Please change this to the address of the kill switch authorizer
+};
+
+const VARS = testnet;
 
 export default async function (): Promise<void> {
   const wallet = getWallet(hre);
+
   const contractArtifactName = "EmailRecoveryCommandHandler";
   const commandHandler = await deployContract(
     hre,
@@ -22,15 +42,26 @@ export default async function (): Promise<void> {
   const commandHandlerAddress = await commandHandler.getAddress();
   console.log("Command handler deployed at:", commandHandlerAddress);
 
-  const module = await deployContract(
+  const proxyArtifactName =
+    "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol:ERC1967Proxy";
+
+  await deployContract(hre, proxyArtifactName, [VARS.emailAuthImpl, "0x"], {
+    silent: true,
+  });
+
+  const EmailRecoveryModuleArtifactName = "EmailRecoveryModule";
+  const emailRecoveryModule = await deployContract(
     hre,
-    "EmailRecoveryModule",
+    EmailRecoveryModuleArtifactName,
     [
-      verifier,
-      dkimRegistry,
-      emailAuthImpl,
+      VARS.verifier,
+      VARS.dkimRegistry,
+      VARS.emailAuthImpl,
       commandHandlerAddress,
-      factoryAddress,
+      VARS.minimumDelay,
+      VARS.killSwitchAuthorizer,
+      VARS.factoryAddress,
+      VARS.bytecodeHash,
     ],
     {
       wallet,
@@ -38,6 +69,6 @@ export default async function (): Promise<void> {
     }
   );
 
-  const moduleAddress = await module.getAddress();
-  console.log("Module deployed at:", moduleAddress);
+  const emailRecoveryModuleAddress = await emailRecoveryModule.getAddress();
+  console.log("Email recovery module deployed at:", emailRecoveryModuleAddress);
 }
