@@ -1294,9 +1294,10 @@
     erc7579 "github:erc7579/erc7579-implementation"
     forge-std "github:foundry-rs/forge-std"
 
-"@rhinestone/modulekit@github:rhinestonewtf/modulekit":
-  version "0.4.15"
-  resolved "https://codeload.github.com/rhinestonewtf/modulekit/tar.gz/cf8df88890ca2e78b7fc99eb6bf18e9cd916cfef"
+"@rhinestone/modulekit@0.4.16":
+  version "0.4.16"
+  resolved "https://registry.yarnpkg.com/@rhinestone/modulekit/-/modulekit-0.4.16.tgz#a13ebf60522ff1b501a645ccaeb3cac1bcd3d492"
+  integrity sha512-3yDsgiwg+fft5YMNE/ZWe/ftfqdDnmEQ0F92ynTKx0B0+ikwBDBsj0BwrBADZeh92xKbiEcVEhTooaeteF3X0A==
   dependencies:
     "@ERC4337/account-abstraction" "github:kopy-kat/account-abstraction#develop"
     "@ERC4337/account-abstraction-v0.6" "github:eth-infinitism/account-abstraction#v0.6.0"
@@ -1741,37 +1742,37 @@
   version "3.0.0"
   resolved "https://codeload.github.com/kopy-kat/kernel/tar.gz/acc457ce5169929ce3ce0f06a9540f85ccc8b25f"
 
-"@zk-email/contracts@^6.3.1":
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/@zk-email/contracts/-/contracts-6.3.1.tgz#bb8c29181819974f766e0669c7bb7e012be32fff"
-  integrity sha512-SiSSaHvn6BrT0vFFPA48r7jdoZi+2ZmRfU4QEQamtMqBlzVbs3ZmgTzgR4SFWz2/1SP+IIzDs9pfkkqf+6Wqcw==
+"@zk-email/contracts@6.3.2", "@zk-email/contracts@^6.3.2":
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/@zk-email/contracts/-/contracts-6.3.2.tgz#0da78b1bc05878939c68457f7edd85081163368f"
+  integrity sha512-+JW0aZMlcrT66lsLqpyxHoGrOT3cMsfBnRinJ8wgXJit4rbZSRYKqVi42dGMyJVvpiJ8O9VQ5hbeYn/fpQKUxw==
   dependencies:
     "@openzeppelin/contracts" "^5.0.0"
     "@openzeppelin/contracts-upgradeable" "^5.0.0"
     dotenv "^16.3.1"
 
-"@zk-email/email-recovery@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@zk-email/email-recovery/-/email-recovery-1.0.0.tgz#9b821cd5d25fefab3319bd3c2d1a79a1d1051c95"
-  integrity sha512-2izY6QqXdmErK0VER10uP7MLt+LClcAIdMpHNC3clGSAdjGxroH8lxhjWQ64IPMQdqGQqwYKLdGnOyIw6KcTrg==
+"@zk-email/email-recovery@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@zk-email/email-recovery/-/email-recovery-1.0.3.tgz#38bffecdaa88161fdac320785fac05e421c2c6b2"
+  integrity sha512-OQNfB8HHwu+EU+aClEXyQ2XlZy5nQbUgqxOmn241eG1W8TKOTyeQdXOOmvxdDKLSYpsXG7tVUm8dQ5wFCksnZg==
   dependencies:
     "@matterlabs/era-contracts" "github:matter-labs/era-contracts"
     "@openzeppelin/contracts-upgradeable" "5.0.1"
-    "@rhinestone/modulekit" "github:rhinestonewtf/modulekit"
-    "@zk-email/contracts" "^6.3.1"
-    "@zk-email/ether-email-auth-contracts" "1.0.0"
+    "@rhinestone/modulekit" "0.4.16"
+    "@zk-email/contracts" "6.3.2"
+    "@zk-email/ether-email-auth-contracts" "1.0.2"
     erc7579-implementation "github:erc7579/erc7579-implementation"
     solidity-stringutils "github:LayerZero-Labs/solidity-stringutils"
 
-"@zk-email/ether-email-auth-contracts@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@zk-email/ether-email-auth-contracts/-/ether-email-auth-contracts-1.0.0.tgz#6ee1339d0f1b615d89c553858cdc1c863f4cea08"
-  integrity sha512-xgZ8oc8fx0ddNgIkyVEt81mcDx298GCV/YfI8pQ5CaXwPBY0ketcoSj+vzw5h/+xHhqfJLEENYtKmzS0XPczpQ==
+"@zk-email/ether-email-auth-contracts@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@zk-email/ether-email-auth-contracts/-/ether-email-auth-contracts-1.0.2.tgz#f0d64b036fa5ceb112c88dfccfc0b03837244588"
+  integrity sha512-mUAu7QQ0/kjoDkN6vPEZa4so5lUuQzSvu45yWMTDJCANwLIbCLVAMA2koS63MDDAsYK9mrfWGEsJvGqmN7S4Qg==
   dependencies:
     "@matterlabs/zksync-contracts" "^0.6.1"
     "@openzeppelin/contracts" "^5.0.0"
     "@openzeppelin/contracts-upgradeable" "^5.0.0"
-    "@zk-email/contracts" "^6.3.1"
+    "@zk-email/contracts" "^6.3.2"
     solady "^0.0.123"
     solidity-stringutils "github:LayerZero-Labs/solidity-stringutils"
 
