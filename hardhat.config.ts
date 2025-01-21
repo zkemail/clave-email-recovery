@@ -14,18 +14,20 @@ import type { NetworkUserConfig } from "hardhat/types";
 import "./tasks/deploy";
 
 const mainnet = {
-  DecimalUtils: "0x687C913942fBeDAed383420c25f06c675D63Fd59",
-  CommandUtils: "0xA6117a66C40ec9eD65B251874D70cC9E7cF6052b",
-  StringUtils: "0x6Cd2d8aE77Fa5455200B338ffA06BFB0970e7A57",
+  DecimalUtils: "0x718C17388E0A1b63788E80F789B03cdd8Df76060",
+  CommandUtils: "0x72971413eC4D6F4298C9E906f85a9f78a73773a5",
+  StringUtils: "0x888A8339fF7465DfE29BcC1f930B983C01a35C0a",
+  defaultNetwork: "zkSyncMainnet",
 };
 
 const testnet = {
-  DecimalUtils: "0x95C21cE16f9d20fE406ce67D8eFcd521b162C6Fa",
-  CommandUtils: "0x691727F67b2AbE8Bba1b37b198A5EE491a7084be",
-  StringUtils: "0x75DcAc758184454B9d8c96B95272899FECA2BA66",
+  DecimalUtils: "0x0b5900C91Cb1683182c6d279C22706e6a6C65Bfb",
+  CommandUtils: "0x9821b97F3b585738648cfB50F3EfF9c5DB490Cc2",
+  StringUtils: "0x86E65d11ef3C99ABb34a8C903552906E906661FE",
+  defaultNetwork: "zkSyncSepolia",
 };
 
-const VARS = testnet;
+const VARS = mainnet;
 
 dotenv.config();
 
@@ -82,7 +84,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "zkSyncSepolia",
+  defaultNetwork: VARS.defaultNetwork,
   networks: {
     hardhat: {
       zksync: true,

@@ -2,28 +2,28 @@ import * as hre from "hardhat";
 import { deployContract, getWallet } from "./utils";
 
 const mainnet = {
-  factoryAddress: "0x147E23A284dde7FF6b42f835253B9b0CBce6c84e",
-  verifier: "0x520E9fc008f58ba339EEB6AbAeF30d3325F3F5C4",
-  dkimRegistry: "0xA10bAa5FA41E25Eb50711a57AA2f0a9c06A6A009",
-  emailAuthImpl: "0xe8b70B310D0f0e35985e757c5a73290Dcc24Eb69",
+  dkimRegistry: "0x7C2e50e58cb6D94BbDa7dCec1aF7634003892aD9",
+  verifier: "0xC261ba8f3a2219Cd15a463C605c3E272cf105E00",
+  emailAuthImpl: "0xFaCAd61572f4c7df60Eb951B875625cc29612f8B",
+  factoryAddress: "0x4a06245B0CD0cAE3968f0BD048196d610f53B6b2",
   bytecodeHash:
-    "0x010000810f12e857cc327d0fe44fd50632c222c2082ffa123c42102ff78a47cd",
+    "0x010000817390a810b04c473d5adfe1538ac67c8dedf61f14c58e98b0c844bea5",
   minimumDelay: 0,
-  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000" // Please change this to the address of the kill switch authorizer
+  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000", // Please change this to the address of the kill switch authorizer
 };
 
 const testnet = {
-  factoryAddress: "0x1a9806ECa5a86e2A614647a2B1245762520fB729",
-  verifier: "0xbcd38daF327818De796fE8de684b392A4B4584C8",
-  dkimRegistry: "0x743ADbd9886Aebe79a9D2dEB4f5c8686DB7463D9",
-  emailAuthImpl: "0x51233067952888A99E692d263550e6f33Ab00194",
+  dkimRegistry: "0x07284efbc9A44eDE8Cf61daE96298FA16bf5591e",
+  verifier: "0xCf619836B8fb82C9cAdF52d81644dd59Ed520DaE",
+  emailAuthImpl: "0x398316B211BeEe5238BB34f8a4e565cCbA790ADC",
+  factoryAddress: "0x934D44cD16a25C7Ef93583674cDb5F303bC8d393",
   bytecodeHash:
-    "0x01000081bdf506a8c0ed71857afdab50746414f3bfc88c376acfb2bcfb3baa18",
+    "0x01000081183d2be3ef5a61113657f87b159436fbccec981e966ffd26816c2c34",
   minimumDelay: 0,
-  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000" // Please change this to the address of the kill switch authorizer
+  killSwitchAuthorizer: "0x0000000000000000000000000000000000000000", // Please change this to the address of the kill switch authorizer
 };
 
-const VARS = testnet;
+const VARS = mainnet;
 
 export default async function (): Promise<void> {
   const wallet = getWallet(hre);
