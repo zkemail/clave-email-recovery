@@ -1685,10 +1685,10 @@
     "@openzeppelin/contracts-upgradeable" "^5.0.0"
     dotenv "^16.3.1"
 
-"@zk-email/email-recovery@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@zk-email/email-recovery/-/email-recovery-1.1.0.tgz#1f17fe9fb75c35d333e3fc7eb30c4b69fb612ffc"
-  integrity sha512-Psbu0Zh+HoItvHPX5MjGSsogfHFnX1z4RxcReLyGEBGgN6kR623bz0nCL/U/S7gtDydp+eZ0nrtNiXZ2qyoB+g==
+"@zk-email/email-recovery-clave@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@zk-email/email-recovery-clave/-/email-recovery-clave-1.1.1.tgz#d52edd50a8c288d840142dd4bef0a3833ba326d6"
+  integrity sha512-Fw/JwncYmJexudlqKm9hgVIJOl5vR2DUokaJVajF6ojkK+5BYTFQFFnZVXB0f5sqVIj4hk8Hx3ymxbaujio0Xw==
   dependencies:
     "@matterlabs/era-contracts" "github:matter-labs/era-contracts"
     "@openzeppelin/contracts-upgradeable" "5.0.1"
