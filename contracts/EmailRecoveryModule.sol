@@ -7,6 +7,8 @@ import {IClaveAccount} from "./interfaces/IClave.sol";
 import {Errors} from "./libraries/Errors.sol";
 import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import {EmailRecoveryManagerZkSync} from "@zk-email/email-recovery-clave/src/EmailRecoveryManagerZkSync.sol";
+import {EmailRecoveryManager} from "@zk-email/email-recovery-clave/src/EmailRecoveryManager.sol";
+import {EmailAccountRecovery} from "@zk-email/ether-email-auth-contracts/src/EmailAccountRecovery.sol";
 import {GuardianManager} from "@zk-email/email-recovery-clave/src/GuardianManager.sol";
 
 contract EmailRecoveryModule is
@@ -25,6 +27,11 @@ contract EmailRecoveryModule is
      * @param newOwner bytes  - New owner of the account
      */
     event RecoveryExecuted(address indexed account, bytes newOwner);
+
+    modifier isTransactionInitiatorAccount() {
+        // TODO: implement
+        _;
+    }
 
     /**
      * @notice Initializes the EmailRecoveryModule contract
@@ -132,6 +139,52 @@ contract EmailRecoveryModule is
         return
             interfaceId == type(IModule).interfaceId ||
             interfaceId == type(IERC165).interfaceId;
+    }
+
+    /**
+     * @notice Accepts a guardian for the specified account. This is the second core function
+     * that must be called during the end-to-end recovery flow
+     * @dev Is identical to the EmailRecoveryManager implementation except for the addition of the isTransactionInitiatorAccount modifier
+     * @param guardian The address of the guardian to be accepted
+     * @param templateIdx The index of the template used for acceptance
+     * @param commandParams An array of bytes containing the command parameters
+     * @param {nullifier} Unused parameter. The nullifier acts as a unique identifier for an email,
+     * but it is not required in this implementation
+     */
+    function acceptGuardian(
+        address guardian,
+        uint256 templateIdx,
+        bytes[] memory commandParams,
+        bytes32 /* nullifier */
+    )
+        internal
+        override(EmailAccountRecovery, EmailRecoveryManager)
+        isTransactionInitiatorAccount
+    {
+        super.acceptGuardian(guardian, templateIdx, commandParams, bytes32(0));
+    }
+
+    /**
+     * @notice Processes a recovery request for a given account. This is the third core function
+     * that must be called during the end-to-end recovery flow
+     * @dev Is identical to the EmailRecoveryManager implementation except for the addition of the isTransactionInitiatorAccount modifier
+     * @param guardian The address of the guardian initiating/voting on the recovery request
+     * @param templateIdx The index of the template used for the recovery request
+     * @param commandParams An array of bytes containing the command parameters
+     * @param {nullifier} Unused parameter. The nullifier acts as a unique identifier for an email,
+     * but it is not required in this implementation
+     */
+    function processRecovery(
+        address guardian,
+        uint256 templateIdx,
+        bytes[] memory commandParams,
+        bytes32 /* nullifier */
+    )
+        internal
+        override(EmailAccountRecovery, EmailRecoveryManager)
+        isTransactionInitiatorAccount
+    {
+        super.processRecovery(guardian, templateIdx, commandParams, bytes32(0));
     }
 
     /**
